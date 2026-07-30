@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <script>(function(){try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Is Quantum in the Money Yet?</title>
+    <meta name="description" content="Tracking whether the quantum computing industry is making money — revenue, spend, and burn rates across quantum labs and hyperscaler quantum divisions.">
+    <meta name="robots" content="index, follow">
+    <meta name="revisit-after" content="1 day">
+
+    <link rel="canonical" href="https://isquantum.money/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://isquantum.money/">
+    <meta property="og:title" content="Is Quantum in the Money Yet?">
+    <meta property="og:description" content="Tracking whether the quantum computing industry is making money — revenue, spend, and burn rates across quantum labs and hyperscaler quantum divisions.">
+    <!-- og:image TBD — needs quantum-specific artwork (assets/OG.png, 1200×630) -->
+
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="scripts.js" defer></script>
+    <script src="theme.js" defer></script>
+
+    
+  </head>
+  <body>
+
+    <div class="theme-toggle" role="radiogroup" aria-label="Theme">
+      <button type="button" data-theme-choice="light" role="radio" aria-checked="false" aria-label="Light" title="Light">
+        <svg class="theme-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" fill="currentColor"/>
+          <g stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+            <line x1="12" y1="2" x2="12" y2="4.5"/>
+            <line x1="12" y1="19.5" x2="12" y2="22"/>
+            <line x1="2" y1="12" x2="4.5" y2="12"/>
+            <line x1="19.5" y1="12" x2="22" y2="12"/>
+            <line x1="4.93" y1="4.93" x2="6.64" y2="6.64"/>
+            <line x1="17.36" y1="17.36" x2="19.07" y2="19.07"/>
+            <line x1="4.93" y1="19.07" x2="6.64" y2="17.36"/>
+            <line x1="17.36" y1="6.64" x2="19.07" y2="4.93"/>
+          </g>
+        </svg>
+      </button>
+      <button type="button" data-theme-choice="auto" role="radio" aria-checked="true" aria-label="Match system" title="Match system">
+        <svg class="theme-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/>
+        </svg>
+      </button>
+      <button type="button" data-theme-choice="dark" role="radio" aria-checked="false" aria-label="Dark" title="Dark">
+        <svg class="theme-toggle-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="content" id="question">
+      Is Quantum in the money yet?
+    </div>
+
+    <div class="content">
+      <span class="content" id="yesno">Nope</span>
+    </div>
+
+    <div class="content"><!--
+  Audit trail (2026-07-07):
+
+  SPENT since 23 Oct 2019 (corporate only): ~$20B
+    Pure-play cumulative burn ~$8B:
+      IonQ ~$1.3B (net losses FY20-25: 15+106+49+158+332+510M = ~$1.17B, + H1'26)
+      Rigetti ~$0.6B | D-Wave ~$0.45B | Quantinuum ~$0.9B (FY24 $144M, FY25 $193M + prior years)
+      PsiQuantum ~$1.2B | others (Xanadu, Pasqal, IQM, SandboxAQ, QuEra, Alice & Bob, ...) ~$3-3.5B
+    Hyperscaler quantum R&D ~$13B (est; none separately reported):
+      IBM ~$4.5B | Google ~$3B | Microsoft ~$2.5B | Amazon ~$1.5B | Intel ~$1B | others ~$1.5B
+    Central estimate ~$21B -> $20B (speculative, rounded to nearest $5B).
+    Capital RAISED is higher (McKinsey QTM 2026: $12.6B into quantum cos in 2025 alone) but
+    much sits unspent on balance sheets (IonQ $3.3B, D-Wave $588M, Rigetti $569M cash).
+    Government commitments (>$54B, McKinsey) excluded per methodology.
+  Per-sec (spend): current annualised corporate spend ~$6.5B/yr
+    (IBM ~$2B/yr pledge, pure-play burn ~$1B/yr, PsiQuantum builds, other startups, other
+    hyperscalers) -> 6,500,000,000 / 31,557,600 s/yr = $206/s
+
+  EARNED since 23 Oct 2019: ~$4B (estimate)
+    Annual industry revenue: '19Q4 ~0.03 + '20 ~0.15 + '21 ~0.25 + '22 ~0.4 + '23 ~0.55
+    + '24 ~0.7 + '25 ~1.1 (McKinsey: first year >$1B) + H1'26 ~0.7 = ~$3.9B -> $4B
+    Cross-checks: IBM claims $1.1B booked since 2017; FY25 revenue: IonQ $130M,
+    Quantinuum $30.9M, D-Wave $24.6M, Rigetti $7.1M; IonQ FY26 guidance $260-270M.
+  Per-sec (revenue): current annualised ~$1.5B/yr
+    -> 1,500,000,000 / 31,557,600 = $48/s
+
+  Sources: McKinsey Quantum Technology Monitor 2026; company Q4/FY2025 and Q1 2026 releases;
+  Quantinuum S-1 + Nasdaq debut (Jun 2026); IBM newsroom 2026-06-02 ($10B/5yr commitment);
+  NIST/DoC letters of intent 2026-05-21. Full notes: research/research.2026-07-07.md
+-->
+<div class="aside totals">
+  <div class="aside-title">since Oct &rsquo;19</div>
+  <div class="total-item spend">
+    <span class="total-label">Spent<a href="#fn1" class="fn-ref">1</a></span>
+    <span class="total-value" data-value="20000000000" data-per-sec="206">$20B</span>
+  </div>
+  <div class="total-item revenue">
+    <span class="total-label">Earned<a href="#fn2" class="fn-ref">2</a></span>
+    <span class="total-value" data-value="4000000000" data-per-sec="48">$4B</span>
+  </div>
+</div></div>
+
+    
+
+    <div class="content">
+  <p class="content">
+
+The money is arriving faster than the evidence: $12.6B went into quantum
+compute companies in 2025, six times the year before; IBM has pledged $10B over
+five years; Washington is taking equity stakes; governments have committed $54B
+more (kept outside the corporate ledger here). Industry revenue crossed $1B a
+year for the first time in 2025, and no machine has yet solved a commercially
+useful problem faster than a classical one.
+
+  </p>
+  <div class="aside rotd">
+  <div class="aside-title" title="Ridiculousness of the Day">RotD</div>
+  <p class="rotd-body">IonQ&rsquo;s revenue grew 755% and its stock still fell 31% in a month &mdash; oil prices in the Strait of Hormuz mattered more <a href="https://www.tikr.com/blog/ionq-fell-31-in-a-month-was-the-selloff-justified" rel="noopener noreferrer">...</a></p>
+  <a class="rotd-more" href="/rotd/">More RotD &hellip;</a>
+</div>
+
+  <p class="content">
+
+Revenue mind you, not profit. The dedicated labs lost about $1B in 2025 on
+$190M of combined revenue; Quantinuum then floated at $14B in June, some 450
+times sales. AI at least gets to argue about margins. Quantum compute sits
+earlier in the pipeline: nothing it sells yet beats the incumbents. The quantum
+advantage remains, as it has since 2019, a few years out.
+
+  </p>
+  <table class="content">
+    <thead>
+      <tr><th>Company</th><th>Revenue</th><th>Spend</th><th>Profit / (Loss)</th><th>1 Year Ago</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>IBM</td><td>$1.1B booked since &rsquo;17</td><td>~$2B/yr pledged</td><td>n/d</td><td>n/d</td></tr>
+      <tr><td>Google</td><td>none disclosed</td><td>~$0.5B/yr est</td><td>(~$0.5B) est</td><td>n/d</td></tr>
+      <tr><td>Microsoft</td><td>bundled (Azure)</td><td>~$0.4B/yr est</td><td>(~$0.4B) est</td><td>n/d</td></tr>
+      <tr><td>AWS</td><td>bundled (Braket)</td><td>~$0.3B/yr est</td><td>(~$0.3B) est</td><td>n/d</td></tr>
+      <tr><td>IonQ</td><td>$130M</td><td>~$320M</td><td>($510M)</td><td>($332M)</td></tr>
+      <tr><td>Quantinuum</td><td>$31M</td><td>~$220M</td><td>($193M)</td><td>($144M)</td></tr>
+      <tr><td>D-Wave</td><td>$25M</td><td>~$121M</td><td>($85M) adj</td><td>($76M) adj</td></tr>
+      <tr><td>Rigetti</td><td>$7M</td><td>~$92M</td><td>($216M)</td><td>($201M)</td></tr>
+    </tbody>
+  </table>
+  <p class="content">FY2025 figures. Pure-play GAAP losses swing on non-cash warrant revaluations &mdash; D-Wave shown adjusted; the cash leaves either way. Hyperscalers don&rsquo;t report quantum P&amp;L, so those rows are estimates.</p>
+</div>
+
+    <div class="content footnotes">
+      <p class="footnote" id="fn1"><sup>1</sup> <strong>Spent</strong> &mdash; Cumulative operating burn and R&amp;D at pure-play quantum companies (IonQ, Rigetti, D-Wave, Quantinuum, PsiQuantum, and others with disclosed figures) plus the reported/estimated quantum divisions of the hyperscalers (IBM, Google, Microsoft, Amazon, Intel). Where a hyperscaler does not separately report quantum spend, an analyst estimate is used. Government grants and national-lab funding are tracked separately in the discussion and not included here. Figures run from Google&rsquo;s quantum supremacy claim (October 2019) to the date shown.</p>
+      <p class="footnote" id="fn2"><sup>2</sup> <strong>Earned</strong> &mdash; Cumulative quantum-attributable revenue across the same companies &mdash; cloud access to quantum hardware, on-premise system sales, algorithm and consulting services, and government contracts recognised as revenue. Not all companies separately report quantum revenue; figures are estimated from earnings calls and analyst disclosures, and are intentionally conservative: revenue is counted only where the quantum contribution can be reasonably isolated.</p>
+    </div>
+
+    <nav class="sidebar" aria-label="Site links">
+      <a class="sidebar-link" href="/">Home</a>
+      <a class="sidebar-link" href="/rotd/">RotD</a>
+      <a class="sidebar-link" href="https://isai.money" rel="noopener noreferrer">isai.money</a>
+      <a class="sidebar-link" href="/privacy.html">Privacy</a>
+    </nav>
+
+    <footer>
+      <p>
+        &copy; <span id="copyright-year">2026</span> isquantum.money
+      </p>
+    </footer>
+
+  </body>
+</html>

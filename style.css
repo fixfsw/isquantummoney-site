@@ -1,0 +1,769 @@
+/* ============================================================
+   Bauhaus / Solarized Light stylesheet
+   ============================================================ */
+
+/* Google Fonts: Comfortaa */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap');
+
+/* ── Design tokens ──────────────────────────────────────── */
+:root {
+  /* Backgrounds: cream & beige spectrum */
+  --bg-page:      #fefcf5;   /* very light cream — page background */
+  --bg-section:   #faf5e8;   /* slightly warmer, section backgrounds */
+  --bg-beige:     #f2ead8;   /* used for table heads */
+  --bg-rotd:      #eaf0f7;   /* cool blue-tinted pane for ROTD */
+
+  /* Foreground */
+  --fg-black:     #1c1c1c;   /* body text */
+  --fg-brown-dk:  #2e1f0f;   /* darkest title text */
+  --fg-brown:     #5c3520;   /* mid brown — subheadings, footer */
+  --fg-brown-lt:  #8a6545;   /* lighter brown — captions, meta */
+
+  /* Accents */
+  --accent-blue:  #1a5c8a;   /* deep blue — links */
+  --accent-red:   #8b1a1a;   /* deep red */
+  --accent-yellow:#b58900;   /* rich solarized yellow */
+  --accent-green: #3d6b00;   /* used sparingly */
+
+  /* Borders */
+  --border-main:  #d4c9b0;
+  --border-table: #c8bda0;
+
+  /* Typography */
+  --font-main: 'Comfortaa', 'Segoe UI', sans-serif;
+
+  /* Spacing rhythm */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 3.5rem;
+  --space-xl: 5rem;
+}
+
+/* ── Dark tokens — Bauhaus / Solarized Dark ─────────────────
+   Applied automatically when the OS/browser reports a dark
+   appearance, unless overridden by an explicit user choice
+   (see [data-theme] below). Same token names, same relative
+   contrast relationships, warm palette inverted onto a near-
+   black ground. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-page:      #1b140d;
+    --bg-section:   #221a12;
+    --bg-beige:     #2b2117;
+    --bg-rotd:      #16202b;
+
+    --fg-black:     #ede4d3;
+    --fg-brown-dk:  #f5ecd9;
+    --fg-brown:     #d9c3a0;
+    --fg-brown-lt:  #a68a68;
+
+    --accent-blue:  #6cb6e8;
+    --accent-red:   #e2726b;
+    --accent-yellow:#e0b64d;
+    --accent-green: #8bc34a;
+
+    --border-main:  #4a3c2a;
+    --border-table: #55442f;
+  }
+}
+
+/* Explicit user choice always wins over the OS/browser default above. */
+:root[data-theme="dark"] {
+  --bg-page:      #1b140d;
+  --bg-section:   #221a12;
+  --bg-beige:     #2b2117;
+  --bg-rotd:      #16202b;
+
+  --fg-black:     #ede4d3;
+  --fg-brown-dk:  #f5ecd9;
+  --fg-brown:     #d9c3a0;
+  --fg-brown-lt:  #a68a68;
+
+  --accent-blue:  #6cb6e8;
+  --accent-red:   #e2726b;
+  --accent-yellow:#e0b64d;
+  --accent-green: #8bc34a;
+
+  --border-main:  #4a3c2a;
+  --border-table: #55442f;
+}
+
+:root[data-theme="light"] {
+  --bg-page:      #fefcf5;
+  --bg-section:   #faf5e8;
+  --bg-beige:     #f2ead8;
+  --bg-rotd:      #eaf0f7;
+
+  --fg-black:     #1c1c1c;
+  --fg-brown-dk:  #2e1f0f;
+  --fg-brown:     #5c3520;
+  --fg-brown-lt:  #8a6545;
+
+  --accent-blue:  #1a5c8a;
+  --accent-red:   #8b1a1a;
+  --accent-yellow:#b58900;
+  --accent-green: #3d6b00;
+
+  --border-main:  #d4c9b0;
+  --border-table: #c8bda0;
+}
+
+/* ── Reset ──────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── A11y utility ───────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Base ───────────────────────────────────────────────── */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--bg-page);
+  color: var(--fg-black);
+  line-height: 1.75;
+  /* Wide left/right margins via padding — content is centred */
+  padding: var(--space-lg) 10%;
+}
+
+/* ── Links ──────────────────────────────────────────────── */
+a {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── Page-level layout wrapper ──────────────────────────── */
+/* All direct-body children share the same centred column */
+body > div.content,
+body > footer {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--space-lg);
+}
+
+/* ── Question heading ────────────────────────────────────── */
+#question {
+  font-size: clamp(0.85rem, 2.5vw, 1.1rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--fg-brown-lt);
+  text-align: left;
+  padding-top: var(--space-md);
+  padding-bottom: 0;
+}
+
+/* ── Yes / No hero answer ───────────────────────────────── */
+#yesno {
+  display: block;
+  font-family: var(--font-main);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 9vw, 3.5rem);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1;
+
+  /* Gradient: dark brown → near-black */
+  background: linear-gradient(160deg, var(--fg-brown-dk) 0%, var(--fg-black) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  padding: var(--space-xs) 0 var(--space-sm);
+  text-align: left;
+}
+
+/* Wrapper div for yesno — no separator */
+div.content:has(#yesno) {
+  margin-bottom: var(--space-md);
+}
+
+/* ── Aside — shared narrow right-aligned pane ───────────── */
+/* Used by both p.rotd and .totals. Split back out per-class if the
+   two ever visually diverge. */
+.aside {
+  background-color: var(--bg-rotd);
+  border-radius: 0.875rem;
+  border-left: 4px solid var(--accent-blue);
+  padding: 1.1rem 1.5rem;
+  color: var(--fg-brown-dk);
+  max-width: 52%;
+  margin-left: auto;
+  margin-right: 0;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+/* ── RotD body — italic quote below the shared aside title ── */
+.rotd-body {
+  font-style: italic;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.rotd-body a {
+  color: var(--accent-blue);
+  font-style: normal;
+}
+
+/* ── "More RotD…" link — homepage only, sits inside .aside.rotd ─ */
+.aside.rotd .rotd-more {
+  display: block;
+  margin-top: 0.6rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-brown-lt);
+  text-align: right;
+}
+
+.aside.rotd .rotd-more:hover,
+.aside.rotd .rotd-more:focus {
+  color: var(--accent-blue);
+  text-decoration: none;
+}
+
+/* ── Discussion content ─────────────────────────────────── */
+p.content {
+  margin-bottom: 1.4rem;
+  font-size: 1rem;
+  color: var(--fg-black);
+  text-align: justify;
+  hyphens: auto;
+}
+
+p.content:last-of-type {
+  margin-bottom: 0;
+}
+
+p.content strong {
+  font-weight: 700;
+  color: var(--fg-brown-dk);
+}
+
+/* ── Lists ──────────────────────────────────────────────── */
+ul, ol {
+  padding-left: 1.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+li {
+  margin-bottom: 0.35rem;
+}
+
+/* ── Headings ───────────────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-main);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin-bottom: var(--space-sm);
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--fg-black);
+}
+
+h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--fg-brown-dk);
+  margin-top: var(--space-md);
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--border-main);
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--fg-brown);
+  margin-top: var(--space-sm);
+}
+
+/* ── Tables ─────────────────────────────────────────────── */
+table.content {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* Column headers styled like h3 */
+table.content thead th {
+  font-family: var(--font-main);
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--fg-brown);
+  background-color: var(--bg-beige);
+  padding: 0.625rem 0.875rem;
+  text-align: left;
+  border-top: 1px solid var(--border-table);
+  border-bottom: 1px solid var(--border-table);
+}
+
+table.content thead th:not(:last-child) {
+  border-right: 1px solid var(--border-table);
+}
+
+table.content tbody td {
+  padding: 0.6rem 0.875rem;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border-table);
+}
+
+table.content tbody td:not(:last-child) {
+  border-right: 1px solid var(--border-table);
+}
+
+table.content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+table.content tbody tr:nth-child(even) {
+  background-color: var(--bg-section);
+}
+
+table.content tbody strong {
+  font-weight: 600;
+  color: var(--fg-brown-dk);
+}
+
+/* ── Aside title — shared header for totals and RotD panes ── */
+.aside-title {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+  color: var(--accent-blue);
+  margin-bottom: var(--space-xs);
+}
+
+/* Show a subtle cursor hint when the title has a native tooltip. */
+.aside-title[title] {
+  cursor: help;
+}
+
+/* Archive date headers are permalinks — keep the title's own styling. */
+.aside-title a {
+  color: inherit;
+}
+
+/* Flag the entry a permalink landed on. */
+.aside.rotd:target {
+  border-left-color: var(--accent-red);
+}
+
+/* ── Running totals — left-aligned variant ──────────────── */
+.aside.totals {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+/* ── Running totals — pane interior ────────────────────── */
+
+.total-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-md);
+}
+
+.total-item + .total-item {
+  margin-top: 0.2rem;
+}
+
+.total-label {
+  font-size: 0.88rem;
+  color: var(--fg-brown-dk);
+}
+
+.total-value {
+  font-family: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
+  font-size: 1rem;
+  font-weight: 750;
+  color: var(--fg-brown-dk);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.total-item.spend .total-value   { color: var(--accent-red); }
+.total-item.revenue .total-value { color: var(--accent-green); }
+
+/* ── Footnote references (superscript links in totals labels) ── */
+.fn-ref {
+  font-size: 0.6em;
+  color: var(--fg-brown-lt);
+  text-decoration: none;
+  vertical-align: super;
+  line-height: 0;
+  margin-left: 0.15em;
+  font-style: normal;
+}
+
+.fn-ref:hover {
+  color: var(--accent-blue);
+}
+
+/* ── Footnotes block ────────────────────────────────────── */
+.footnotes {
+  border-top: 1px solid var(--border-main);
+  padding-top: var(--space-sm);
+}
+
+.footnote {
+  font-size: 0.75rem;
+  color: var(--fg-brown-lt);
+  font-style: italic;
+  line-height: 1.55;
+  margin-bottom: 0.4rem;
+}
+
+.footnote:last-child {
+  margin-bottom: 0;
+}
+
+.footnote sup {
+  font-style: normal;
+  color: var(--fg-brown-lt);
+  margin-right: 0.2em;
+}
+
+.footnote strong {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--fg-brown);
+}
+
+/* ── RotD archive — /rotd/ list pages ──────────────────── */
+/* Header block above the list */
+.archive-header {
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.archive-header h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--fg-brown-dk);
+  margin-bottom: 0.5rem;
+}
+
+
+/* Left-align + full-width the aside cards when they're in the archive list */
+.rotd-list .aside.rotd {
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.rotd-list .aside.rotd:first-child {
+  margin-top: 0;
+}
+
+/* ── Pager — prev/next navigation on archive pages ─────── */
+.pager {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  padding-top: var(--space-sm);
+  padding-bottom: var(--space-md);
+  margin-top: var(--space-md);
+  font-size: 0.85rem;
+}
+
+.pager-newer,
+.pager-older {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.pager-newer:hover,
+.pager-older:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pager-page {
+  color: var(--fg-brown-lt);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.pager-placeholder {
+  display: inline-block;
+  min-width: 1px;
+}
+
+/* ── Sidebar — flat site nav, identical on every page ───── */
+/* Narrow viewports: a centred horizontal strip above the footer.
+   Wide viewports (≥1120px, where a rail clears the 680px column):
+   a fixed rail in the left gutter. */
+.sidebar {
+  max-width: 680px;
+  margin: 0 auto var(--space-md);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 1.5rem;
+  row-gap: 0.35rem;
+}
+
+.sidebar-link {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-brown);
+}
+
+.sidebar-link:hover,
+.sidebar-link:focus {
+  color: var(--accent-blue);
+}
+
+/* Inline icon links (e.g. Bluesky) sit at text height and inherit the
+   link colour, hover included. */
+.sidebar-link .sidebar-icon {
+  height: 1em;
+  width: auto;
+  fill: currentColor;
+  vertical-align: -0.125em;
+}
+
+@media (min-width: 1120px) {
+  .sidebar {
+    position: fixed;
+    top: calc(var(--space-lg) + var(--space-md));
+    left: 2rem;
+    width: 11rem;
+    display: block;
+    margin: 0;
+  }
+
+  .sidebar-link {
+    display: block;
+    padding: 0.15rem 0;
+  }
+}
+
+/* ── Prose pages (privacy etc.) — long-form text in the column ── */
+.prose p {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.prose ul {
+  margin-bottom: var(--space-sm);
+  font-size: 0.95rem;
+}
+
+/* Section headings in the aside-title language — no underlines */
+.prose h2 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent-blue);
+  border-bottom: none;
+  padding-bottom: 0;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-xs);
+}
+
+.prose h3 {
+  font-size: 0.9rem;
+  color: var(--fg-brown);
+  margin-top: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.prose-meta {
+  color: var(--fg-brown-lt);
+  font-size: 0.8rem;
+}
+
+/* ── Ad slot ────────────────────────────────────────────── */
+.ad-slot {
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--space-lg);
+  text-align: center;
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
+footer {
+  border-top: 1px solid var(--border-main);
+  padding-top: var(--space-sm);
+  color: var(--fg-brown-lt);
+  font-size: 0.8rem;
+  text-align: center;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+}
+
+footer a:hover {
+  color: var(--accent-blue);
+}
+
+/* ── Theme toggle — floating light/auto/dark segmented control ── */
+.theme-toggle {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 1000;
+  display: flex;
+  gap: 0.15rem;
+  background-color: var(--bg-section);
+  border: 1px solid var(--border-main);
+  border-radius: 999px;
+  padding: 0.2rem;
+}
+
+.theme-toggle button {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  color: var(--fg-brown-lt);
+}
+
+.theme-toggle button:hover,
+.theme-toggle button:focus-visible {
+  color: var(--accent-blue);
+}
+
+.theme-toggle button:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 2px;
+}
+
+.theme-toggle button[aria-checked="true"] {
+  background-color: var(--accent-blue);
+  color: var(--bg-page);
+}
+
+.theme-toggle button[aria-checked="true"]:hover,
+.theme-toggle button[aria-checked="true"]:focus-visible {
+  color: var(--bg-page);
+}
+
+.theme-toggle-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: currentColor;
+}
+
+/* ── Responsive: Tablet (≤ 1024px) ─────────────────────── */
+@media (max-width: 1024px) {
+  body {
+    padding: var(--space-md) 6%;
+  }
+}
+
+/* ── Responsive: Mobile (≤ 640px) ──────────────────────── */
+@media (max-width: 640px) {
+  body {
+    padding: var(--space-sm) var(--space-sm);
+  }
+
+  body > div.content,
+  body > footer {
+    max-width: 100%;
+  }
+
+  p.content {
+    text-align: left;
+    hyphens: none;
+  }
+
+  #yesno {
+    font-size: clamp(2.5rem, 16vw, 4rem);
+    letter-spacing: 0.08em;
+  }
+
+  .aside {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem 1.25rem;
+    border-radius: 0.625rem;
+  }
+
+  .rotd-body { font-size: 0.88rem; }
+
+  /* Make wide tables horizontally scrollable on small screens */
+  div.content {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  table.content {
+    font-size: 0.78rem;
+    min-width: 560px;
+  }
+
+  table.content thead th,
+  table.content tbody td {
+    padding: 0.45rem 0.625rem;
+  }
+
+  footer {
+    font-size: 0.75rem;
+    padding-top: var(--space-xs);
+  }
+
+  body > div.content {
+    margin-bottom: var(--space-md);
+  }
+
+  .theme-toggle {
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .theme-toggle button {
+    width: 1.7rem;
+    height: 1.7rem;
+  }
+}
